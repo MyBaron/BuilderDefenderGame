@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba99ef99c74a35840b6a12f173ee670d, type: 3}
+  m_Name: WoodScriptableObject
+  m_EditorClassIdentifier: 
+  buildingName: "\u952F\u6728\u5382"
+  perfab: {fileID: 8238698694761198854, guid: 0290d751d0eaf6c49ab5ef75f51c9ec8, type: 3}
