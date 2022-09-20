@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: "\u952F\u6728\u5382"
   perfab: {fileID: 8238698694761198854, guid: 0290d751d0eaf6c49ab5ef75f51c9ec8, type: 3}
+  resourceGeneratorData:
+    timerMax: 1
+    resourceType: {fileID: 11400000, guid: 9fdb7db528308a243b2d511c7100ddfd, type: 2}

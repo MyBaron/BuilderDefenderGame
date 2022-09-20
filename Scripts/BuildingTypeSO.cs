@@ -9,4 +9,8 @@ public class BuildingTypeSO : ScriptableObject
     public string buildingName;
     [Header("预制体")]
     public Transform perfab;
+
+    [Header("资源数据")]
+    public ResourceGeneratorData resourceGeneratorData;
+    
 }
