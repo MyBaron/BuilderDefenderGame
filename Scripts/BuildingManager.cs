@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BuildingManager : MonoBehaviour
 {
 
+    public static BuildingManager Instance { get; private set; }
+    
     private Camera mainCamera;
 
     [SerializeField]
@@ -15,21 +19,23 @@ public class BuildingManager : MonoBehaviour
     private BuildingTypeListSO _buildingTypeList;
 
     // 当前选择的建筑
-    private BuildingTypeSO _buildingType;
+    private BuildingTypeSO _activeBuildingType;
     
-
-
     private bool _ismouseScriptNotNull;
+
+    private void Awake()
+    {
+        Instance = this;
+        //  加载资源
+        _buildingTypeList = Resources.Load<BuildingTypeListSO>(nameof(BuildingTypeListSO));
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         _ismouseScriptNotNull = mouseScript != null;
         mainCamera = Camera.main;
-        //  加载资源
-        _buildingTypeList = Resources.Load<BuildingTypeListSO>(nameof(BuildingTypeListSO));
        
-        _buildingType = _buildingTypeList.list[0];
     }
 
     // Update is called once per frame
@@ -40,23 +46,30 @@ public class BuildingManager : MonoBehaviour
             mouseScript.transform.position = GetMouseWorldPosition();
         }
 
-        if (Input.GetMouseButtonDown(0))
+        // 并且不在 UI上
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            Instantiate(_buildingType.perfab, GetMouseWorldPosition(), Quaternion.identity);
+            if (_activeBuildingType != null)
+            {
+                Instantiate(_activeBuildingType.perfab, GetMouseWorldPosition(), Quaternion.identity);
+            }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log($"T");
-            _buildingType = _buildingTypeList.list[0];
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Debug.Log($"Y");
-            _buildingType = _buildingTypeList.list[1];
-        }
-        
+    /*
+     * 设置当前选择的建筑
+     */
+    public void SetActiveBuildingType(BuildingTypeSO buildingTypeSo)
+    {
+        _activeBuildingType = buildingTypeSo;
+    }
+
+    /*
+     * 获取当前选择的建筑
+     */
+    public BuildingTypeSO GetActiveBuildingType()
+    {
+        return _activeBuildingType;
     }
 
 

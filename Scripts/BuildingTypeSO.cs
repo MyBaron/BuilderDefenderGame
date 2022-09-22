@@ -13,4 +13,7 @@ public class BuildingTypeSO : ScriptableObject
     [Header("资源数据")]
     public ResourceGeneratorData resourceGeneratorData;
     
+    [Header("图片")]
+    public Sprite sprite;
+    
 }
